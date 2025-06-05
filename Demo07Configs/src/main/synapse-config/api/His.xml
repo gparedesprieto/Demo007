@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/his" name="His" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <log level="full"/>
+            <dblookup>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/postgres</url>
+                        <user>postgres</user>
+                        <password>saq25</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[SELECT b as a FROM Persona WHERE a = '1']]></sql>
+                    <result column="a" name="a"/>
+                </statement>
+            </dblookup>
+            <log level="full"/>
+            <payloadFactory media-type="json">
+                <format>{"resultado":"$1"}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('a')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

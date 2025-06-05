@@ -1,0 +1,11 @@
+---
+key: "His-1.0.0"
+name : "His"
+displayName : "His"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/his"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"
